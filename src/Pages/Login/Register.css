@@ -1,0 +1,11 @@
+.form{
+    margin: 0 auto;
+    
+}
+.bg-primary{
+    cursor: pointer;
+    color: white;
+}
+.bg-black{
+    cursor: pointer;
+}

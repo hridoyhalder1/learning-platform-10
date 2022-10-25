@@ -1,3 +1,5 @@
-/* .navbar img{
-    width: 25px;
-} */
+.login a{
+    text-decoration: none;
+    margin-left: 10px;
+    color: rgb(173, 164, 164);
+}

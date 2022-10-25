@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Header.css';
 import './DarkMood.css';
 import Container from 'react-bootstrap/Container';
@@ -6,8 +6,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../../asstes/logo/logo.png';
 import { FaMoon } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const Header = () => {
-
+    const {user} = useContext(AuthContext);
     const [theme, setTheme] = useState('light');
     const handleToggleTheme = () => {
         if(theme === 'light'){
@@ -22,6 +24,7 @@ const Header = () => {
     },[theme])
 
     return (
+        
         <div className={`Header ${theme}`}>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
@@ -35,11 +38,12 @@ const Header = () => {
                             <Nav.Link  onClick={handleToggleTheme}> <FaMoon></FaMoon> Darkmood</Nav.Link>
                             
                         </Nav>
-                        <Nav>
-                            <Nav.Link href="#deets">More deets</Nav.Link>
-                            <Nav.Link eventKey={2} href="#memes">
-                                Dank memes
-                            </Nav.Link>
+                        <Nav className='login'>
+                            <Link  to='/login'>{user?.displayName}</Link>
+                            <Link  to='/login'>Login</Link>
+                            <Link to='/register' eventKey={2} >
+                                Register
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
