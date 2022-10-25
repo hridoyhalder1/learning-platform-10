@@ -19,7 +19,7 @@ const Login = () => {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                    Register
+                    Login
                 </Button>
             </Form>
         </div>

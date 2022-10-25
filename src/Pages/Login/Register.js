@@ -2,8 +2,8 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Register.css';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+
+import GoogleWithGithub from './GoogleWithGitHub/GoogleWithGithub';
 
 const Register = () => {
     return (
@@ -30,10 +30,7 @@ const Register = () => {
             </Form>
             <div>
                 <h5>Or</h5>
-                <ListGroup className=' w-25'>
-                    <ListGroup.Item className='mb-3 bg-primary text-white'> <FaGoogle></FaGoogle> Login With Google</ListGroup.Item>
-                    <ListGroup.Item className=' bg-black text-white'> <FaGithub></FaGithub> Login With Github</ListGroup.Item>                    
-                </ListGroup>
+                <GoogleWithGithub></GoogleWithGithub>
             </div>
         </div>
     );
