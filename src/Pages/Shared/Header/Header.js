@@ -17,8 +17,8 @@ const Header = () => {
 
     const handleLogOut = () => {
         logOut()
-        .then(() => {})
-        .catch(error => console.lgo(error))
+            .then(() => { })
+            .catch(error => console.lgo(error))
     }
 
 
@@ -44,9 +44,9 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#features">Courses</Nav.Link>
-                            <Nav.Link href="#pricing">FAQ</Nav.Link>
-                            <Nav.Link href="#blog">Blog</Nav.Link>
+                            <Nav.Link ><Link to='/courses'>Courses</Link></Nav.Link>
+                            <Nav.Link ><Link to='/faq'>FAQ</Link></Nav.Link>
+                            <Nav.Link ><Link to='/blog'>Blog</Link></Nav.Link>
                             <Nav.Link onClick={handleToggleTheme}> <FaMoon></FaMoon> Darkmood</Nav.Link>
 
                         </Nav>
@@ -55,13 +55,13 @@ const Header = () => {
                                 {
                                     user?.uid ?
                                         <>
-                                            <span>{user?.displayName}</span>
+                                            <span className=' text-white ms-2'>{user?.displayName}</span>
                                             <Button variant="light" onClick={handleLogOut} >LogOut</Button>
                                         </>
                                         :
                                         <>
-                                            <Link to='/login'>Login</Link>
-                                            <Link to='/register'>Register</Link>
+                                            <Nav.Link><Link to='/login'>Login</Link></Nav.Link>
+                                            <Nav.Link><Link to='/register'>Register</Link></Nav.Link>
 
                                         </>
                                 }
@@ -70,7 +70,7 @@ const Header = () => {
                             <Nav.Link href="#blhog">
                                 {user?.photoURL ?
                                     <Image
-                                        style={{ height: '40px' }}
+                                        style={{ height: '30px' }}
                                         roundedCircle
                                         src={user?.photoURL}
                                     ></Image>

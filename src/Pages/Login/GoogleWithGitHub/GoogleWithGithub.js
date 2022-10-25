@@ -1,4 +1,4 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
@@ -10,6 +10,7 @@ const GoogleWithGithub = () => {
     const {providerLogin} = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
@@ -24,7 +25,7 @@ const GoogleWithGithub = () => {
         <div>
             <ListGroup className=' w-25 '>
                     <ListGroup.Item onClick={handleGoogleSignIn} className='mb-3 bg-primary text-white'> <FaGoogle></FaGoogle> Login With Google</ListGroup.Item>
-                    <ListGroup.Item className=' bg-black text-white'> <FaGithub></FaGithub> Login With Github</ListGroup.Item>                    
+                    <ListGroup.Item onClick={handleGithub} className=' bg-black text-white'> <FaGithub></FaGithub> Login With Github</ListGroup.Item>                    
                 </ListGroup>
         </div>
     );
