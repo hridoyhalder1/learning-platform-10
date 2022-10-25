@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +6,8 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
 
-    const {signIn} = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleSignIn = event => {
@@ -17,20 +18,24 @@ const Login = () => {
         console.log(email, password);
 
         signIn(email, password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-            form.reset();
-            navigate('/');
-        })
-        .catch(error => console.error(error))
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('')
+                navigate('/');
+            })
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
     }
 
     return (
         <div className=' container mt-4 mb-4'>
             <h2>Login</h2>
             <Form onSubmit={handleSignIn} className=' w-50 '>
-                
+
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" name='email' placeholder="Enter email" required />
@@ -44,6 +49,9 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
+                <Form.Text className="text-danger">
+                    {error}
+                </Form.Text>
             </Form>
         </div>
     );
