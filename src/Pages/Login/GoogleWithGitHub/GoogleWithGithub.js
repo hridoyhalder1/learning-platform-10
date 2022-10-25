@@ -21,6 +21,15 @@ const GoogleWithGithub = () => {
         .catch(error => console.error(error))
     }
 
+    const handleGithub = () => {
+        providerLogin(githubProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
+
     return (
         <div>
             <ListGroup className=' w-25 '>
