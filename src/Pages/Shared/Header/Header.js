@@ -9,8 +9,19 @@ import { FaMoon, FaUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import { Image } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+
 const Header = () => {
-    const { user } = useContext(AuthContext);
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {})
+        .catch(error => console.lgo(error))
+    }
+
+
     const [theme, setTheme] = useState('light');
     const handleToggleTheme = () => {
         if (theme === 'light') {
@@ -40,11 +51,22 @@ const Header = () => {
 
                         </Nav>
                         <Nav className='login '>
-                            <Link to='/login'>{user?.displayName}</Link>
-                            <Link to='/login'>Login</Link>
-                            <Link to='/register'  >
-                                Register
-                            </Link>
+                            <>
+                                {
+                                    user?.uid ?
+                                        <>
+                                            <span>{user?.displayName}</span>
+                                            <Button variant="light" onClick={handleLogOut} >LogOut</Button>
+                                        </>
+                                        :
+                                        <>
+                                            <Link to='/login'>Login</Link>
+                                            <Link to='/register'>Register</Link>
+
+                                        </>
+                                }
+                            </>
+
                             <Nav.Link href="#blhog">
                                 {user?.photoURL ?
                                     <Image
